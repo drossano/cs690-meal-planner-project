@@ -12,3 +12,11 @@
 /media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/obj/Debug/net8.0/MealPlanner.pdb
 /media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/obj/Debug/net8.0/MealPlanner.genruntimeconfig.cache
 /media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/obj/Debug/net8.0/ref/MealPlanner.dll
+/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/obj/Debug/net8.0/MealPlanner.sourcelink.json
+/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/bin/Debug/net8.0/Spectre.Console.dll
+/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/bin/Debug/net8.0/Spectre.Console.Cli.dll
+/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/bin/Debug/net8.0/de/Spectre.Console.Cli.resources.dll
+/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/bin/Debug/net8.0/fr/Spectre.Console.Cli.resources.dll
+/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/bin/Debug/net8.0/sv/Spectre.Console.Cli.resources.dll
+/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/obj/Debug/net8.0/MealPlanner.csproj.AssemblyReference.cache
+/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/obj/Debug/net8.0/MealPlanner.csproj.CopyComplete
