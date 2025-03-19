@@ -1,6 +1,8 @@
 namespace MealPlanner;
 
 using System.IO;
+using Microsoft.VisualBasic;
+
 public class FileManager
 {
   string fileName;
@@ -19,4 +21,6 @@ public class FileManager
     File.AppendAllText(this.fileName, line + Environment.NewLine);
   }
 
+
 }
+
