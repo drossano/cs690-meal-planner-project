@@ -7,15 +7,20 @@ public class DataManager
 {
 
   public List<Recipe> Recipes { get; }
-
+  public List<Day> Days { get; }
 
   public DataManager()
   {
     Recipes = [];
+    Days = [new Day("Sunday"), new Day("Monday"), new Day("Tuesday"), new Day("Wednesday"), new Day("Thursday"), new Day("Friday"), new Day("Saturday"), new Day("Exit")];
     var recipesFileContent = File.ReadAllLines("recipeList.txt");
     foreach (var recipeName in recipesFileContent)
     {
       Recipes.Add(new Recipe(recipeName));
+    }
+    if (!Recipes.Exists(x => x.Name == "Exit "))
+    {
+      Recipes.Add(new Recipe("Exit"));
     }
   }
 
@@ -36,9 +41,8 @@ public class DataManager
     SyncRecipes();
   }
 
-  public void RemoveRecipe(string recipeName)
+  public void RemoveRecipe(Recipe recipe)
   {
-    var recipe = Recipes.Find(x => x.Name == recipeName);
     Recipes.Remove(recipe);
     SyncRecipes();
   }

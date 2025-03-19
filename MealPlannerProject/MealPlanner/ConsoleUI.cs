@@ -1,4 +1,7 @@
 namespace MealPlanner;
+
+using System.ComponentModel.DataAnnotations;
+using Microsoft.VisualBasic;
 using Spectre.Console;
 class ConsoleUI
 {
@@ -25,12 +28,56 @@ class ConsoleUI
 
       switch (module)
       {
+        case "Meal Planner":
+          MealPlanner();
+          break;
         case "Recipes":
           Recipes();
           break;
       }
     } while (module != "Exit");
   }
+
+
+  public void MealPlanner()
+  {
+    string module;
+    do
+    {
+      module = AnsiConsole.Prompt(
+          new SelectionPrompt<string>()
+              .Title("Select an option")
+              .AddChoices([
+                "Edit Meal Plan", "Clear Meal Plan", "Exit",
+              ]));
+
+      switch (module)
+      {
+        case "Edit Meal Plan":
+          Day selectedDay = AnsiConsole.Prompt(
+      new SelectionPrompt<Day>()
+          .Title("Please select a Recipe to remove.")
+          .AddChoices(dataManager.Days)
+            );
+          if (selectedDay.Name == "Exit")
+          {
+            break;
+          }
+          foreach (var meal in selectedDay.Meals)
+          {
+            Console.WriteLine(meal.Name);
+          }
+
+          break;
+        case "Clear Meal Plan":
+          Recipes();
+          break;
+      }
+    } while (module != "Exit");
+  }
+
+
+
 
   public void Recipes()
   {
@@ -58,18 +105,12 @@ class ConsoleUI
           }
           break;
         case "Remove Recipe":
-          List<string> deleteChoices = [];
-          foreach (var recipe in dataManager.Recipes)
-          {
-            deleteChoices.Add(recipe.ToString());
-          }
-          deleteChoices.Add("Exit");
-          string deletedRecipe = AnsiConsole.Prompt(
-          new SelectionPrompt<string>()
+          Recipe deletedRecipe = AnsiConsole.Prompt(
+          new SelectionPrompt<Recipe>()
               .Title("Please select a Recipe to remove.")
-              .AddChoices(deleteChoices)
+              .AddChoices(dataManager.Recipes)
                 );
-          if (deletedRecipe == "Exit")
+          if (deletedRecipe.Name == "Exit")
           {
             break;
           }

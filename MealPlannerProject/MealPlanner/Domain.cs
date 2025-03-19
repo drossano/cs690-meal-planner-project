@@ -22,7 +22,7 @@ public class Meal(string name)
 {
   public string Name { get; } = name;
 
-  public List<Recipe> Recipes { get; } = [];
+  public List<Recipe> Recipes { get; set; } = [];
   public override string ToString()
   {
     return this.Name;

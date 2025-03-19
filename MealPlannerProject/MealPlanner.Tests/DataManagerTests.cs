@@ -20,11 +20,11 @@ public class DataManagerTests
     public void Test_DataManager_Add()
     {
         // Given
-        Assert.Equal(5, testDataManager.Recipes.Count);
+        Assert.Equal(6, testDataManager.Recipes.Count);
         // When
         testDataManager.AddRecipe(new Recipe("Six"));
         // Then
-        Assert.Equal(6, testDataManager.Recipes.Count);
+        Assert.Equal(7, testDataManager.Recipes.Count);
     }
 
     [Fact]
@@ -32,10 +32,10 @@ public class DataManagerTests
     {
 
         // Given
-        Assert.Equal(5, testDataManager.Recipes.Count);
+        Assert.Equal(6, testDataManager.Recipes.Count);
         // When
-        testDataManager.RemoveRecipe("Five");
+        testDataManager.RemoveRecipe(testDataManager.Recipes[4]);
         // Then
-        Assert.Equal(4, testDataManager.Recipes.Count);
+        Assert.Equal(5, testDataManager.Recipes.Count);
     }
 }
