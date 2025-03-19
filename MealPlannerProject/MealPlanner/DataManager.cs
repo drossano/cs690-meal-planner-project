@@ -36,8 +36,9 @@ public class DataManager
     SyncRecipes();
   }
 
-  public void RemoveRecipe(Recipe recipe)
+  public void RemoveRecipe(string recipeName)
   {
+    var recipe = Recipes.Find(x => x.Name == recipeName);
     Recipes.Remove(recipe);
     SyncRecipes();
   }

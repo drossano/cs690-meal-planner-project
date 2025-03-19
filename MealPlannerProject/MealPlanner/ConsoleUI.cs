@@ -58,16 +58,22 @@ class ConsoleUI
           }
           break;
         case "Remove Recipe":
-          List<Recipe> recipeList = [];
-          var recipeListFileContent = File.ReadAllLines("recipeList.txt");
-          foreach (var recipe in recipeListFileContent)
+          List<string> deleteChoices = [];
+          foreach (var recipe in dataManager.Recipes)
           {
-            recipeList.Add(new Recipe(recipe));
+            deleteChoices.Add(recipe.ToString());
           }
-          Recipe deletedRecipe = AnsiConsole.Prompt(
-      new SelectionPrompt<Recipe>()
-          .Title("Please select a Recipe to remove.")
-          .AddChoices(dataManager.Recipes));
+          deleteChoices.Add("Exit");
+          string deletedRecipe = AnsiConsole.Prompt(
+          new SelectionPrompt<string>()
+              .Title("Please select a Recipe to remove.")
+              .AddChoices(deleteChoices)
+                );
+          if (deletedRecipe == "Exit")
+          {
+            break;
+          }
+
           dataManager.RemoveRecipe(deletedRecipe);
           Console.WriteLine(deletedRecipe + " removed");
 

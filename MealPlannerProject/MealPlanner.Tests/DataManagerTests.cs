@@ -34,7 +34,7 @@ public class DataManagerTests
         // Given
         Assert.Equal(5, testDataManager.Recipes.Count);
         // When
-        testDataManager.RemoveRecipe(testDataManager.Recipes[4]);
+        testDataManager.RemoveRecipe("Five");
         // Then
         Assert.Equal(4, testDataManager.Recipes.Count);
     }

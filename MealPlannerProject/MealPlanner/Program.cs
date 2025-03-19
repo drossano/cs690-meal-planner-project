@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        ConsoleUI theUI = new ConsoleUI();
+        ConsoleUI theUI = new();
         theUI.Show();
     }
 
