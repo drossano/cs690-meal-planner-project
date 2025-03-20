@@ -54,20 +54,30 @@ class ConsoleUI
       switch (module)
       {
         case "Edit Meal Plan":
-          Day selectedDay = AnsiConsole.Prompt(
-      new SelectionPrompt<Day>()
-          .Title("Please select a Recipe to remove.")
-          .AddChoices(dataManager.Days)
-            );
+          Day selectedDay = EditMeal();
           if (selectedDay.Name == "Exit")
           {
             break;
           }
-          foreach (var meal in selectedDay.Meals)
+          Meal selectedMeal = AnsiConsole.Prompt(
+          new SelectionPrompt<Meal>()
+              .Title("Please select a meal to edit.")
+              .AddChoices(selectedDay.Meals)
+                );
+          if (selectedMeal.Name != "Exit")
           {
-            Console.WriteLine(meal.Name);
+            if (!selectedMeal.Recipes.Any())
+            {
+              Console.WriteLine("This meal has no dishes, add some.");
+            }
+            else
+            {
+              foreach (var dish in selectedMeal.Recipes)
+              {
+                Console.WriteLine(dish);
+              }
+            }
           }
-
           break;
         case "Clear Meal Plan":
           Recipes();
@@ -76,7 +86,16 @@ class ConsoleUI
     } while (module != "Exit");
   }
 
-
+  public Day EditMeal()
+  {
+    Day selectedDay = AnsiConsole.Prompt(
+          new SelectionPrompt<Day>()
+              .Title("Please select a day to edit.")
+              .AddChoices(dataManager.Days)
+              .AddChoices(new Day("Exit"))
+                );
+    return selectedDay;
+  }
 
 
   public void Recipes()
@@ -108,7 +127,8 @@ class ConsoleUI
           Recipe deletedRecipe = AnsiConsole.Prompt(
           new SelectionPrompt<Recipe>()
               .Title("Please select a Recipe to remove.")
-              .AddChoices(dataManager.Recipes)
+              .AddChoices(dataManager.Recipes )
+              .AddChoices(new Recipe("Exit"))
                 );
           if (deletedRecipe.Name == "Exit")
           {

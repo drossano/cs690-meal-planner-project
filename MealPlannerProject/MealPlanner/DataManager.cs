@@ -12,15 +12,11 @@ public class DataManager
   public DataManager()
   {
     Recipes = [];
-    Days = [new Day("Sunday"), new Day("Monday"), new Day("Tuesday"), new Day("Wednesday"), new Day("Thursday"), new Day("Friday"), new Day("Saturday"), new Day("Exit")];
+    Days = [new Day("Sunday"), new Day("Monday"), new Day("Tuesday"), new Day("Wednesday"), new Day("Thursday"), new Day("Friday"), new Day("Saturday")];
     var recipesFileContent = File.ReadAllLines("recipeList.txt");
     foreach (var recipeName in recipesFileContent)
     {
       Recipes.Add(new Recipe(recipeName));
-    }
-    if (!Recipes.Exists(x => x.Name == "Exit "))
-    {
-      Recipes.Add(new Recipe("Exit"));
     }
   }
 
