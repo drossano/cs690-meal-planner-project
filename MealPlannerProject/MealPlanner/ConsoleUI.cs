@@ -54,18 +54,13 @@ class ConsoleUI
       switch (module)
       {
         case "Edit Meal Plan":
-          Day selectedDay = EditMeal();
+          Day selectedDay = SelectDay();
           if (selectedDay.Name == "Exit")
           {
             break;
           }
 
-          string selectedMeal = AnsiConsole.Prompt(
-          new SelectionPrompt<string>()
-              .Title("Please select a meal to edit.")
-              .AddChoices(selectedDay.meals.Keys)
-              .AddChoices("Exit")
-                );
+          string selectedMeal = selectedMeal(selectedDay);
           List<Recipe> mealRecipes = selectedDay.meals[selectedMeal];
           if (selectedMeal != "Exit")
           {
@@ -82,7 +77,7 @@ class ConsoleUI
     } while (module != "Exit");
   }
 
-  public Day EditMeal()
+  public Day SelectDay()
   {
     Day selectedDay = AnsiConsole.Prompt(
           new SelectionPrompt<Day>()
@@ -91,6 +86,17 @@ class ConsoleUI
               .AddChoices(new Day("Exit"))
                 );
     return selectedDay;
+  }
+
+  public string SelectMeal(Day day)
+  {
+    string selectedMeal = AnsiConsole.Prompt(
+      new SelectionPrompt<string>()
+          .Title("Please select a meal to edit.")
+          .AddChoices(day.meals.Keys)
+          .AddChoices("Exit")
+            );
+    return selectedMeal;
   }
 
 
