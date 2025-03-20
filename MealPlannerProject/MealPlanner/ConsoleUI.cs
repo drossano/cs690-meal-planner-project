@@ -64,10 +64,7 @@ class ConsoleUI
           List<Recipe> mealRecipes = selectedDay.meals[selectedMeal];
           if (selectedMeal != "Exit")
           {
-            if (mealRecipes.Count() == 0)
-            {
-              Console.WriteLine("This meal has no dishes, please add one.");
-            }
+            EditMeal(selectedDay, selectedMeal);
           }
           break;
         case "Clear Meal Plan":
@@ -139,6 +136,60 @@ class ConsoleUI
 
           dataManager.RemoveRecipe(deletedRecipe);
           Console.WriteLine(deletedRecipe + " removed");
+
+          break;
+      }
+    } while (module != "Exit");
+  }
+
+  public void EditMeal(Day selectedDay, string selectedMeal)
+  {
+
+    string module;
+    do
+    {
+      List<string> choices = ["Add Dish", "Exit"];
+      if (selectedDay.meals[selectedMeal].Count != 0)
+      {
+        choices.Insert(1, "Remove Dish");
+      }
+      module = AnsiConsole.Prompt(
+          new SelectionPrompt<string>()
+              .Title("Select an option")
+              .AddChoices(choices));
+
+      switch (module)
+      {
+        case "Add Dish":
+          Recipe dishToAdd = AnsiConsole.Prompt(
+          new SelectionPrompt<Recipe>()
+              .Title("Please select a Dish to add.")
+              .AddChoices(dataManager.Recipes)
+              .AddChoices(new Recipe("Exit"))
+                );
+          if (dishToAdd.Name == "Exit")
+          {
+            break;
+          }
+
+          dataManager.AddDish(selectedDay, selectedMeal, dishToAdd);
+          Console.WriteLine(dishToAdd + " added to " + selectedMeal);
+
+          break;
+        case "Remove Dish":
+          Recipe deletedDish = AnsiConsole.Prompt(
+          new SelectionPrompt<Recipe>()
+              .Title("Please select a dish to remove.")
+              .AddChoices(selectedDay.meals[selectedMeal])
+              .AddChoices(new Recipe("Exit"))
+                );
+          if (deletedDish.Name == "Exit")
+          {
+            break;
+          }
+
+          dataManager.RemoveDish(selectedDay, selectedMeal, deletedDish);
+          Console.WriteLine(deletedDish + " has been removed from " + selectedMeal);
 
           break;
       }
