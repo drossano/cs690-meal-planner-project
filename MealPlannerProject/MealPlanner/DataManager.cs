@@ -19,6 +19,26 @@ public class DataManager
     {
       Recipes.Add(new Recipe(recipeName));
     }
+    if (File.Exists("mealList.txt"))
+    {
+      var mealFileContent = File.ReadAllLines("mealList.txt");
+      foreach (var line in mealFileContent)
+      {
+        var splitted = line.Split(":", StringSplitOptions.RemoveEmptyEntries);
+        var dayName = splitted[0];
+        var mealName = splitted[1];
+        var dishName = splitted[2];
+
+        foreach (Day day in Days)
+        {
+          if (day.Name == dayName)
+          {
+            day.meals[mealName].Add(new Recipe(dishName));
+          }
+        }
+
+      }
+    }
   }
 
   public void SyncMeals()
