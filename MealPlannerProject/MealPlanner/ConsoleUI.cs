@@ -60,7 +60,7 @@ class ConsoleUI
             break;
           }
 
-          string selectedMeal = selectedMeal(selectedDay);
+          string selectedMeal = SelectMeal(selectedDay);
           List<Recipe> mealRecipes = selectedDay.meals[selectedMeal];
           if (selectedMeal != "Exit")
           {
