@@ -59,23 +59,19 @@ class ConsoleUI
           {
             break;
           }
-          Meal selectedMeal = AnsiConsole.Prompt(
-          new SelectionPrompt<Meal>()
+
+          string selectedMeal = AnsiConsole.Prompt(
+          new SelectionPrompt<string>()
               .Title("Please select a meal to edit.")
-              .AddChoices(selectedDay.Meals)
+              .AddChoices(selectedDay.meals.Keys)
+              .AddChoices("Exit")
                 );
-          if (selectedMeal.Name != "Exit")
+          List<Recipe> mealRecipes = selectedDay.meals[selectedMeal];
+          if (selectedMeal != "Exit")
           {
-            if (!selectedMeal.Recipes.Any())
+            if (mealRecipes.Count() == 0)
             {
-              Console.WriteLine("This meal has no dishes, add some.");
-            }
-            else
-            {
-              foreach (var dish in selectedMeal.Recipes)
-              {
-                Console.WriteLine(dish);
-              }
+              Console.WriteLine("This meal has no dishes, please add one.");
             }
           }
           break;
@@ -127,7 +123,7 @@ class ConsoleUI
           Recipe deletedRecipe = AnsiConsole.Prompt(
           new SelectionPrompt<Recipe>()
               .Title("Please select a Recipe to remove.")
-              .AddChoices(dataManager.Recipes )
+              .AddChoices(dataManager.Recipes)
               .AddChoices(new Recipe("Exit"))
                 );
           if (deletedRecipe.Name == "Exit")

@@ -1,3 +1,6 @@
+using System.Globalization;
+using Microsoft.VisualBasic;
+
 namespace MealPlanner;
 
 public class Recipe(string name)
@@ -33,7 +36,9 @@ public class Day(string name)
 {
   public string Name { get; } = name;
 
-  public List<Meal> Meals { get; } = [new Meal("Breakfast"), new Meal("Lunch"), new Meal("Dinner")];
+  public Dictionary<string, List<Recipe>> meals = new(){{"Breakfast", []},
+                                                  {"Lunch", []},
+                                                  {"Dinner",[]}};
 
   public override string ToString()
   {
