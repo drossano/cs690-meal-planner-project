@@ -93,4 +93,18 @@ public class DataManager
     Recipes.Remove(recipe);
     SyncRecipes();
   }
+
+  public void ClearMealPlan()
+  {
+    foreach (var day in Days)
+    {
+      foreach (var meal in day.meals)
+      {
+        meal.Value.Clear();
+
+      }
+
+    }
+    SyncMeals();
+  }
 }

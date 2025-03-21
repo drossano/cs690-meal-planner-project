@@ -41,6 +41,7 @@ class ConsoleUI
 
   public void MealPlanner()
   {
+    GenerateTable();
     string module;
     do
     {
@@ -68,7 +69,15 @@ class ConsoleUI
           }
           break;
         case "Clear Meal Plan":
-          Recipes();
+          string confirmation = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Are you sure you would like to clear your meal ")
+                .AddChoices("No", "Yes")
+                  );
+          if (confirmation == "Yes")
+          {
+            dataManager.ClearMealPlan();
+          }
           break;
       }
     } while (module != "Exit");
@@ -195,4 +204,38 @@ class ConsoleUI
       }
     } while (module != "Exit");
   }
+
+  public void GenerateTable()
+  {
+    var mealPlan = new Table();
+    mealPlan.ShowRowSeparators();
+    mealPlan.AddColumn("Meal");
+    foreach (var day in dataManager.Days)
+    {
+      mealPlan.AddColumn(day.Name);
+
+
+    }
+    mealPlan.AddRow("Breakfast");
+    mealPlan.AddRow("Lunch");
+    mealPlan.AddRow("Dinner");
+    int col = 1;
+    foreach (var day in dataManager.Days)
+    {
+      int row = 0;
+      foreach (var meal in day.meals)
+      {
+        string dishes = "";
+        foreach (var dish in meal.Value)
+        {
+          dishes += dish.Name + "\n";
+        }
+        mealPlan.UpdateCell(row, col, dishes);
+        row += 1;
+      }
+      col += 1;
+    }
+    AnsiConsole.Write(mealPlan);
+  }
+
 }
