@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "FK29A7spaBU0fpJextdIlEJGQ1gVkvKL8z3k+1Gie2MByZctF1bQce5CIcXCPpZNH4zWlIaEcbVVRb8owS9Raw==",
+  "dgSpecHash": "MDiPmGWgrciLG4HVSAmjjpXOOOTLh4I7xzRy+yRQpG+YVZaNPbs7a1/cK6ZDoXYkywIGmIVl3z4rO97Efa8mlQ==",
   "success": true,
   "projectFilePath": "/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner.Tests/MealPlanner.Tests.csproj",
   "expectedPackageFiles": [
     "/home/deanrossano/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
+    "/home/deanrossano/.nuget/packages/coverlet.msbuild/6.0.4/coverlet.msbuild.6.0.4.nupkg.sha512",
     "/home/deanrossano/.nuget/packages/microsoft.codecoverage/17.6.0/microsoft.codecoverage.17.6.0.nupkg.sha512",
     "/home/deanrossano/.nuget/packages/microsoft.net.test.sdk/17.6.0/microsoft.net.test.sdk.17.6.0.nupkg.sha512",
     "/home/deanrossano/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
