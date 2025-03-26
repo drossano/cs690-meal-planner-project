@@ -77,6 +77,8 @@ class ConsoleUI
           if (confirmation == "Yes")
           {
             dataManager.ClearMealPlan();
+            Console.WriteLine("Meal plan cleared");
+            GenerateTable();
           }
           break;
       }
@@ -183,7 +185,7 @@ class ConsoleUI
 
           dataManager.AddDish(selectedDay, selectedMeal, dishToAdd);
           Console.WriteLine(dishToAdd + " added to " + selectedMeal);
-
+          GenerateTable();
           break;
         case "Remove Dish":
           Recipe deletedDish = AnsiConsole.Prompt(
@@ -199,7 +201,7 @@ class ConsoleUI
 
           dataManager.RemoveDish(selectedDay, selectedMeal, deletedDish);
           Console.WriteLine(deletedDish + " has been removed from " + selectedMeal);
-
+          GenerateTable();
           break;
       }
     } while (module != "Exit");

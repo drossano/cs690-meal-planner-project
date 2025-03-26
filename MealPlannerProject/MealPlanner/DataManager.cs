@@ -74,7 +74,7 @@ public class DataManager
   }
   public void SyncRecipes()
   {
-    string recipeList = "recipelist.txt";
+    string recipeList = "recipeList.txt";
     File.Delete(recipeList);
     foreach (var recipe in Recipes)
     {
