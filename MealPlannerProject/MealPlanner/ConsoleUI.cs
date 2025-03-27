@@ -135,20 +135,21 @@ class ConsoleUI
           AddDish(selectedDay, selectedMeal);
           break;
         case "Remove Dish":
-          Recipe deletedDish = AnsiConsole.Prompt(
-          new SelectionPrompt<Recipe>()
-              .Title("Please select a dish to remove.")
-              .AddChoices(selectedDay.meals[selectedMeal])
-              .AddChoices(new Recipe("Exit"))
-                );
-          if (deletedDish.Name == "Exit")
-          {
-            break;
-          }
+          RemoveDish(selectedDay, selectedMeal);
+          // Recipe deletedDish = AnsiConsole.Prompt(
+          // new SelectionPrompt<Recipe>()
+          //     .Title("Please select a dish to remove.")
+          //     .AddChoices(selectedDay.meals[selectedMeal])
+          //     .AddChoices(new Recipe("Exit"))
+          //       );
+          // if (deletedDish.Name == "Exit")
+          // {
+          //   break;
+          // }
 
-          dataManager.RemoveDish(selectedDay, selectedMeal, deletedDish);
-          Console.WriteLine(deletedDish + " has been removed from " + selectedMeal);
-          GenerateTable();
+          // dataManager.RemoveDish(selectedDay, selectedMeal, deletedDish);
+          // Console.WriteLine(deletedDish + " has been removed from " + selectedMeal);
+          // GenerateTable();
           break;
       }
     } while (module != "Exit");
@@ -168,8 +169,22 @@ class ConsoleUI
       Console.WriteLine(dishToAdd + " added to " + selectedMeal);
       GenerateTable();
     }
+  }
 
-
+  public void RemoveDish(Day selectedDay, string selectedMeal)
+  {
+    Recipe deletedDish = AnsiConsole.Prompt(
+    new SelectionPrompt<Recipe>()
+        .Title("Please select a dish to remove.")
+        .AddChoices(selectedDay.meals[selectedMeal])
+        .AddChoices(new Recipe("Exit"))
+          );
+    if (deletedDish.Name != "Exit")
+    {
+      dataManager.RemoveDish(selectedDay, selectedMeal, deletedDish);
+      Console.WriteLine(deletedDish + " has been removed from " + selectedMeal);
+      GenerateTable();
+    }
   }
 
   public void Recipes()
