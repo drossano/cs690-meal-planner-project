@@ -138,6 +138,7 @@ class ConsoleUI
           RemoveDish(selectedDay, selectedMeal);
           break;
       }
+      GenerateTable();
     } while (module != "Exit");
   }
 
@@ -153,7 +154,6 @@ class ConsoleUI
     {
       dataManager.AddDish(selectedDay, selectedMeal, dishToAdd);
       Console.WriteLine(dishToAdd + " added to " + selectedMeal);
-      GenerateTable();
     }
   }
 
@@ -169,7 +169,6 @@ class ConsoleUI
     {
       dataManager.RemoveDish(selectedDay, selectedMeal, deletedDish);
       Console.WriteLine(deletedDish + " has been removed from " + selectedMeal);
-      GenerateTable();
     }
   }
 
