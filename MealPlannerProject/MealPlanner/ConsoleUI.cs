@@ -174,6 +174,7 @@ class ConsoleUI
 
   public void Recipes()
   {
+    PrintRecipes();
     string module;
     do
     {
@@ -190,25 +191,20 @@ class ConsoleUI
           AddRecipe();
           break;
         case "Remove Recipe":
-          Recipe deletedRecipe = AnsiConsole.Prompt(
-          new SelectionPrompt<Recipe>()
-              .Title("Please select a Recipe to remove.")
-              .AddChoices(dataManager.Recipes)
-              .AddChoices(new Recipe("Exit"))
-                );
-          if (deletedRecipe.Name == "Exit")
-          {
-            break;
-          }
-
-          dataManager.RemoveRecipe(deletedRecipe);
-          Console.WriteLine(deletedRecipe + " removed");
-
+          RemoveRecipe();
           break;
       }
+      PrintRecipes();
     } while (module != "Exit");
   }
 
+  public void PrintRecipes()
+  {
+    foreach (var recipe in dataManager.Recipes)
+    {
+      Console.WriteLine("- " + recipe.Name);
+    }
+  }
   public void AddRecipe()
   {
     var recipeName = AnsiConsole.Prompt(
@@ -218,6 +214,22 @@ class ConsoleUI
       Recipe newRecipe = new(recipeName);
       dataManager.AddRecipe(newRecipe);
       Console.WriteLine("Recipe added!");
+    }
+  }
+
+  public void RemoveRecipe()
+  {
+    Recipe deletedRecipe = AnsiConsole.Prompt(
+    new SelectionPrompt<Recipe>()
+      .Title("Please select a Recipe to remove.")
+      .AddChoices(dataManager.Recipes)
+      .AddChoices(new Recipe("Exit"))
+        );
+    if (deletedRecipe.Name != "Exit")
+    {
+      dataManager.RemoveRecipe(deletedRecipe);
+      Console.WriteLine(deletedRecipe + " removed");
+
     }
   }
   public void GenerateTable()
