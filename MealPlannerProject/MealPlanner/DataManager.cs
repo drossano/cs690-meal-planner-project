@@ -14,12 +14,19 @@ public class DataManager
   {
     Recipes = [];
     Days = [new Day("Sunday"), new Day("Monday"), new Day("Tuesday"), new Day("Wednesday"), new Day("Thursday"), new Day("Friday"), new Day("Saturday")];
+    if (!File.Exists("recipeList.txt"))
+    {
+      File.Create("recipeList.txt").Close();
+    }
     var recipesFileContent = File.ReadAllLines("recipeList.txt");
     foreach (var recipeName in recipesFileContent)
     {
       Recipes.Add(new Recipe(recipeName));
     }
-    if (File.Exists("mealList.txt"))
+    if (!File.Exists("mealList.txt"))
+    { File.Create("mealList.txt").Close(); }
+
+    else
     {
       var mealFileContent = File.ReadAllLines("mealList.txt");
       foreach (var line in mealFileContent)

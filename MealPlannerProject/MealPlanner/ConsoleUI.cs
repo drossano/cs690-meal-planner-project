@@ -177,24 +177,17 @@ class ConsoleUI
     string module;
     do
     {
+      List<string> choices = ["Add Recipe", "Exit"];
+      if (dataManager.Recipes.Count != 0)
+      { choices.Insert(1, "Remove Recipe"); }
       module = AnsiConsole.Prompt(
           new SelectionPrompt<string>()
               .Title("Select an option")
-              .AddChoices(new[] {
-                "Add Recipe","Remove Recipe", "Exit",
-              }));
-
+              .AddChoices(choices));
       switch (module)
       {
         case "Add Recipe":
-          var recipeName = AnsiConsole.Prompt(
-          new TextPrompt<string>("What's the name of the recipe that you would like to add? Type \"quit\" to return to the previous menu."));
-          if (recipeName != "quit")
-          {
-            Recipe newRecipe = new(recipeName);
-            dataManager.AddRecipe(newRecipe);
-            Console.WriteLine("Recipe added!");
-          }
+          AddRecipe();
           break;
         case "Remove Recipe":
           Recipe deletedRecipe = AnsiConsole.Prompt(
@@ -216,6 +209,17 @@ class ConsoleUI
     } while (module != "Exit");
   }
 
+  public void AddRecipe()
+  {
+    var recipeName = AnsiConsole.Prompt(
+    new TextPrompt<string>("What's the name of the recipe that you would like to add? Type \"quit\" to return to the previous menu."));
+    if (recipeName != "quit")
+    {
+      Recipe newRecipe = new(recipeName);
+      dataManager.AddRecipe(newRecipe);
+      Console.WriteLine("Recipe added!");
+    }
+  }
   public void GenerateTable()
   {
     var mealPlan = new Table();
