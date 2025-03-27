@@ -38,7 +38,6 @@ class ConsoleUI
     } while (module != "Exit");
   }
 
-
   public void MealPlanner()
   {
     GenerateTable();
@@ -128,7 +127,6 @@ class ConsoleUI
           new SelectionPrompt<string>()
               .Title("Select an option")
               .AddChoices(choices));
-
       switch (module)
       {
         case "Add Dish":
@@ -229,9 +227,9 @@ class ConsoleUI
     {
       dataManager.RemoveRecipe(deletedRecipe);
       Console.WriteLine(deletedRecipe + " removed");
-
     }
   }
+
   public void GenerateTable()
   {
     var mealPlan = new Table();
@@ -240,8 +238,6 @@ class ConsoleUI
     foreach (var day in dataManager.Days)
     {
       mealPlan.AddColumn(day.Name);
-
-
     }
     mealPlan.AddRow("Breakfast");
     mealPlan.AddRow("Lunch");
@@ -264,5 +260,4 @@ class ConsoleUI
     }
     AnsiConsole.Write(mealPlan);
   }
-
 }
