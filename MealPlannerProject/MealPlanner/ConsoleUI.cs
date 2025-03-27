@@ -136,20 +136,6 @@ class ConsoleUI
           break;
         case "Remove Dish":
           RemoveDish(selectedDay, selectedMeal);
-          // Recipe deletedDish = AnsiConsole.Prompt(
-          // new SelectionPrompt<Recipe>()
-          //     .Title("Please select a dish to remove.")
-          //     .AddChoices(selectedDay.meals[selectedMeal])
-          //     .AddChoices(new Recipe("Exit"))
-          //       );
-          // if (deletedDish.Name == "Exit")
-          // {
-          //   break;
-          // }
-
-          // dataManager.RemoveDish(selectedDay, selectedMeal, deletedDish);
-          // Console.WriteLine(deletedDish + " has been removed from " + selectedMeal);
-          // GenerateTable();
           break;
       }
     } while (module != "Exit");
