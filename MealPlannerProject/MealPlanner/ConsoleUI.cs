@@ -56,31 +56,9 @@ class ConsoleUI
       {
         case "Edit Meal Plan":
           EditMealPlan();
-          // Day selectedDay = SelectDay();
-          // if (selectedDay.Name == "Exit")
-          // {
-          //   break;
-          // }
-
-          // string selectedMeal = SelectMeal(selectedDay);
-
-          // if (selectedMeal != "Exit")
-          // {
-          //   EditMeal(selectedDay, selectedMeal);
-          // }
           break;
         case "Clear Meal Plan":
-          string confirmation = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Are you sure you would like to clear your meal ")
-                .AddChoices("No", "Yes")
-                  );
-          if (confirmation == "Yes")
-          {
-            dataManager.ClearMealPlan();
-            Console.WriteLine("Meal plan cleared");
-            GenerateTable();
-          }
+          ClearMealPlan();
           break;
       }
     } while (module != "Exit");
@@ -99,6 +77,21 @@ class ConsoleUI
     }
   }
 
+  public void ClearMealPlan()
+  {
+    string confirmation = AnsiConsole.Prompt(
+      new SelectionPrompt<string>()
+        .Title("Are you sure you would like to clear your meal plan?")
+        .AddChoices("No", "Yes")
+          );
+    if (confirmation == "Yes")
+    {
+      dataManager.ClearMealPlan();
+      Console.WriteLine("Meal plan cleared");
+      GenerateTable();
+    }
+  }
+
   public Day SelectDay()
   {
     Day selectedDay = AnsiConsole.Prompt(
@@ -110,7 +103,7 @@ class ConsoleUI
     return selectedDay;
   }
 
-  public string SelectMeal(Day day)
+  public static string SelectMeal(Day day)
   {
     string selectedMeal = AnsiConsole.Prompt(
       new SelectionPrompt<string>()
