@@ -55,18 +55,19 @@ class ConsoleUI
       switch (module)
       {
         case "Edit Meal Plan":
-          Day selectedDay = SelectDay();
-          if (selectedDay.Name == "Exit")
-          {
-            break;
-          }
+          EditMealPlan();
+          // Day selectedDay = SelectDay();
+          // if (selectedDay.Name == "Exit")
+          // {
+          //   break;
+          // }
 
-          string selectedMeal = SelectMeal(selectedDay);
-          List<Recipe> mealRecipes = selectedDay.meals[selectedMeal];
-          if (selectedMeal != "Exit")
-          {
-            EditMeal(selectedDay, selectedMeal);
-          }
+          // string selectedMeal = SelectMeal(selectedDay);
+
+          // if (selectedMeal != "Exit")
+          // {
+          //   EditMeal(selectedDay, selectedMeal);
+          // }
           break;
         case "Clear Meal Plan":
           string confirmation = AnsiConsole.Prompt(
@@ -83,6 +84,19 @@ class ConsoleUI
           break;
       }
     } while (module != "Exit");
+  }
+
+  public void EditMealPlan()
+  {
+    Day selectedDay = SelectDay();
+    if (selectedDay.Name != "Exit")
+    {
+      string selectedMeal = SelectMeal(selectedDay);
+      if (selectedMeal != "Exit")
+      {
+        EditMeal(selectedDay, selectedMeal);
+      }
+    }
   }
 
   public Day SelectDay()

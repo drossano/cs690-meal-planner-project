@@ -1,1 +1,3 @@
 Sunday:Breakfast:rsatarstartar
+Sunday:Breakfast:arstartar
+Sunday:Dinner:rsatarstartar
