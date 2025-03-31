@@ -31,8 +31,14 @@ class ConsoleUI
         case "Meal Planner":
           MealPlanner();
           break;
+        case "Shopping List":
+          ShoppingList();
+          break;
         case "Recipes":
           Recipes();
+          break;
+        case "Ingredients":
+          Ingredients();
           break;
       }
     } while (module != "Exit");
@@ -170,6 +176,10 @@ class ConsoleUI
     }
   }
 
+  public void ShoppingList()
+  {
+    Console.WriteLine("Not yet implemented!");
+  }
   public void Recipes()
   {
     PrintRecipes();
@@ -228,6 +238,11 @@ class ConsoleUI
       dataManager.RemoveRecipe(deletedRecipe);
       Console.WriteLine(deletedRecipe + " removed");
     }
+  }
+
+  public void Ingredients()
+  {
+    Console.WriteLine("Not yet implemented!");
   }
 
   public void GenerateTable()
