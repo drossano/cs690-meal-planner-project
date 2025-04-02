@@ -62,7 +62,17 @@ class ConsoleUI
       switch (module)
       {
         case "Edit Meal Plan":
-          EditMealPlan();
+          if (dataManager.Recipes.Count == 0)
+          {
+            Console.Clear();
+            GenerateTable();
+            Console.WriteLine("No dishes available. Please add recipes through the Recipes module");
+          }
+          else
+          {
+            EditMealPlan();
+          }
+
           break;
         case "Clear Meal Plan":
           ClearMealPlan();
@@ -157,6 +167,10 @@ class ConsoleUI
 
   public void AddDish(Day selectedDay, string selectedMeal)
   {
+    if (dataManager.Recipes.Count == 0)
+    {
+      Console.WriteLine("No dishes available. Please add recipes through the Recipes module");
+    }
     Recipe dishToAdd = AnsiConsole.Prompt(
               new SelectionPrompt<Recipe>()
                   .Title("Please select a Dish to add.")
