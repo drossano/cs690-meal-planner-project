@@ -1,2 +1,8 @@
-Sunday:Breakfast:arstartar
-Sunday:Breakfast:arstartar
+Sunday:Breakfast:narscortasnr
+Sunday:Breakfast:narscortasnr
+Sunday:Breakfast:narscortasnr
+Sunday:Breakfast:narscortasnr
+Sunday:Breakfast:narscortasnr
+Sunday:Breakfast:narscortasnr
+Sunday:Breakfast:narscortasnr
+Monday:Dinner:narscortasnr

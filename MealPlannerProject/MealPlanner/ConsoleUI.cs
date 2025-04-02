@@ -14,6 +14,7 @@ class ConsoleUI
   public void Show()
   {
     dataManager = new DataManager();
+    Console.Clear();
     Console.WriteLine("Welcome to the Meal Planner app.");
     string module;
     do
@@ -46,6 +47,7 @@ class ConsoleUI
 
   public void MealPlanner()
   {
+    Console.Clear();
     GenerateTable();
     string module;
     do
@@ -79,6 +81,12 @@ class ConsoleUI
       {
         EditMeal(selectedDay, selectedMeal);
       }
+      else
+      {
+        Console.Clear();
+        Console.WriteLine("No changes have been made.");
+        GenerateTable();
+      }
     }
   }
 
@@ -92,6 +100,7 @@ class ConsoleUI
     if (confirmation == "Yes")
     {
       dataManager.ClearMealPlan();
+      Console.Clear();
       Console.WriteLine("Meal plan cleared");
       GenerateTable();
     }
@@ -142,7 +151,7 @@ class ConsoleUI
           RemoveDish(selectedDay, selectedMeal);
           break;
       }
-      GenerateTable();
+
     } while (module != "Exit");
   }
 
@@ -157,7 +166,15 @@ class ConsoleUI
     if (dishToAdd.Name != "Exit")
     {
       dataManager.AddDish(selectedDay, selectedMeal, dishToAdd);
+      Console.Clear();
       Console.WriteLine(dishToAdd + " added to " + selectedMeal);
+      GenerateTable();
+    }
+    else
+    {
+      Console.Clear();
+      Console.WriteLine("No changes have been made");
+      GenerateTable();
     }
   }
 
@@ -172,7 +189,9 @@ class ConsoleUI
     if (deletedDish.Name != "Exit")
     {
       dataManager.RemoveDish(selectedDay, selectedMeal, deletedDish);
+      Console.Clear();
       Console.WriteLine(deletedDish + " has been removed from " + selectedMeal);
+      GenerateTable();
     }
   }
 
@@ -274,5 +293,6 @@ class ConsoleUI
       col += 1;
     }
     AnsiConsole.Write(mealPlan);
+
   }
 }
