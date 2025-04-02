@@ -223,10 +223,16 @@ class ConsoleUI
       }
       PrintRecipes();
     } while (module != "Exit");
+    if (module == "Exit")
+    {
+      Console.Clear();
+    }
   }
 
   public void PrintRecipes()
   {
+
+    Console.WriteLine("Recipes");
     foreach (var recipe in dataManager.Recipes)
     {
       Console.WriteLine("- " + recipe.Name);
@@ -240,7 +246,8 @@ class ConsoleUI
     {
       Recipe newRecipe = new(recipeName);
       dataManager.AddRecipe(newRecipe);
-      Console.WriteLine("Recipe added!");
+      Console.Clear();
+      Console.WriteLine(newRecipe.Name + " added to recipe list");
     }
   }
 
@@ -255,6 +262,7 @@ class ConsoleUI
     if (deletedRecipe.Name != "Exit")
     {
       dataManager.RemoveRecipe(deletedRecipe);
+      Console.Clear();
       Console.WriteLine(deletedRecipe + " removed");
     }
   }
