@@ -215,6 +215,7 @@ class ConsoleUI
   }
   public void Recipes()
   {
+    Console.Clear();
     PrintRecipes();
     string module;
     do
@@ -259,12 +260,42 @@ class ConsoleUI
     if (recipeName != "quit")
     {
       Recipe newRecipe = new(recipeName);
+      string addIngredient = AnsiConsole.Prompt(
+      new SelectionPrompt<string>()
+        .Title("Would you like to add ingredients to this recipe?")
+        .AddChoices("Yes", "No")
+          );
+      if (addIngredient == "Yes")
+      {
+        AddIngredients(newRecipe);
+      }
       dataManager.AddRecipe(newRecipe);
       Console.Clear();
       Console.WriteLine(newRecipe.Name + " added to recipe list");
     }
   }
 
+  public void AddIngredients(Recipe recipe)
+  {
+    string confirmation;
+    do
+    {
+
+
+      var ingredientName = AnsiConsole.Prompt(
+      new TextPrompt<string>("Enter the name of the ingredient that you would like to add. Enter \"quit\" if you don't want to add an ingredient."));
+      if (ingredientName != "quit")
+      {
+        recipe.Ingredients.Add(ingredientName);
+      }
+      confirmation = AnsiConsole.Prompt(
+        new SelectionPrompt<string>()
+        .Title("Would you like to add another ingredient?")
+                .AddChoices("Yes", "No")
+
+      );
+    } while (confirmation != "No");
+  }
   public void RemoveRecipe()
   {
     Recipe deletedRecipe = AnsiConsole.Prompt(

@@ -19,9 +19,22 @@ public class DataManager
       File.Create("recipeList.txt").Close();
     }
     var recipesFileContent = File.ReadAllLines("recipeList.txt");
-    foreach (var recipeName in recipesFileContent)
+    foreach (var recipeLine in recipesFileContent)
     {
+      var recipeAndIngredients = recipeLine.Split(":", StringSplitOptions.RemoveEmptyEntries);
+      var recipeName = recipeAndIngredients[0];
+      var recipeIngredients = recipeAndIngredients[1];
+
       Recipes.Add(new Recipe(recipeName));
+
+      List<string> ingredients = [.. recipeIngredients.Split(",", StringSplitOptions.RemoveEmptyEntries)];
+      foreach (Recipe recipe in Recipes)
+      {
+        if (recipe.Name == recipeName)
+        {
+          recipe.Ingredients = ingredients;
+        }
+      }
     }
     if (!File.Exists("mealList.txt"))
     { File.Create("mealList.txt").Close(); }
@@ -46,6 +59,7 @@ public class DataManager
 
       }
     }
+
   }
 
   public void SyncMeals()
@@ -85,7 +99,12 @@ public class DataManager
     File.Delete(recipeList);
     foreach (var recipe in Recipes)
     {
-      File.AppendAllText(recipeList, recipe.Name + Environment.NewLine);
+      File.AppendAllText(recipeList, recipe.Name + ":");
+      foreach (var ingredient in recipe.Ingredients)
+      {
+        File.AppendAllText(recipeList, ingredient + ",");
+      }
+      File.AppendAllText(recipeList, Environment.NewLine);
     }
   }
 
