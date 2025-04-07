@@ -222,7 +222,8 @@ class ConsoleUI
     {
       List<string> choices = ["Add Recipe", "Exit"];
       if (dataManager.Recipes.Count != 0)
-      { choices.Insert(1, "Remove Recipe"); }
+      { choices.Insert(1, "Edit Recipe" );
+      choices.Insert(2, "Remove Recipe" ); }
       module = AnsiConsole.Prompt(
           new SelectionPrompt<string>()
               .Title("Select an option")
@@ -231,6 +232,9 @@ class ConsoleUI
       {
         case "Add Recipe":
           AddRecipe();
+          break;
+        case "Edit Recipe":
+          EditRecipe();
           break;
         case "Remove Recipe":
           RemoveRecipe();
@@ -275,6 +279,40 @@ class ConsoleUI
     }
   }
 
+  public void EditRecipe()
+  {
+     Recipe recipeToEdit = AnsiConsole.Prompt(
+    new SelectionPrompt<Recipe>()
+      .Title("Please select a Recipe to edit.")
+      .AddChoices(dataManager.Recipes)
+      .AddChoices(new Recipe("Exit"))
+        );
+    if (recipeToEdit.Name != "Exit")
+    {
+     List<string> choices = ["Add Ingredients", "Exit"];
+      if (dataManager.Recipes.Count != 0)
+      { choices.Insert(1, "Remove Ingredients" ); }
+      string module = AnsiConsole.Prompt(
+          new SelectionPrompt<string>()
+              .Title("Select an option")
+              .AddChoices(choices));
+      switch (module)
+      {
+        case "Add Ingredients":
+          AddIngredients(recipeToEdit);
+          dataManager.SyncRecipes();
+          break;
+        case "Remove Ingredients":
+          RemoveIngredient(recipeToEdit);
+          dataManager.SyncRecipes();
+          break;
+        case "Remove Recipe":
+          RemoveRecipe();
+          break;
+      }
+    }
+  }
+
   public void AddIngredients(Recipe recipe)
   {
     string confirmation;
@@ -296,6 +334,23 @@ class ConsoleUI
       );
     } while (confirmation != "No");
   }
+
+    public void RemoveIngredient(Recipe recipe)
+  {
+    string deletedIngredient= AnsiConsole.Prompt(
+    new SelectionPrompt<String>()
+      .Title("Please select an ingredient to remove.")
+      .AddChoices(recipe.Ingredients)
+      .AddChoices("Exit")
+        );
+    if (deletedIngredient != "Exit")
+    {
+      recipe.Ingredients.Remove(deletedIngredient);
+      Console.Clear();
+      Console.WriteLine(deletedIngredient + " removed");
+    }
+  }
+
   public void RemoveRecipe()
   {
     Recipe deletedRecipe = AnsiConsole.Prompt(
