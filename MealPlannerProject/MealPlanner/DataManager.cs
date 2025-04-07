@@ -23,10 +23,11 @@ public class DataManager
     {
       var recipeAndIngredients = recipeLine.Split(":", StringSplitOptions.RemoveEmptyEntries);
       var recipeName = recipeAndIngredients[0];
-      var recipeIngredients = recipeAndIngredients[1];
-
+      string recipeIngredients ="";
+      if (recipeAndIngredients.Length > 1){
+        recipeIngredients = recipeAndIngredients[1];
+      }
       Recipes.Add(new Recipe(recipeName));
-
       List<string> ingredients = [.. recipeIngredients.Split(",", StringSplitOptions.RemoveEmptyEntries)];
       foreach (Recipe recipe in Recipes)
       {
