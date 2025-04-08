@@ -336,7 +336,7 @@ class ConsoleUI
       new TextPrompt<string>("Enter the name of the ingredient that you would like to add. Enter \"quit\" if you don't want to add an ingredient."));
       if (ingredientName != "quit")
       {
-        recipe.Ingredients.Add(ingredientName);
+        recipe.Ingredients.Add(new Ingredient(ingredientName));
       }
       Console.Clear();
       Console.WriteLine(ingredientName + " added to " + recipe.Name + ".");
@@ -357,13 +357,13 @@ class ConsoleUI
     do
     {
     Console.Clear();
-    string deletedIngredient= AnsiConsole.Prompt(
-    new SelectionPrompt<String>()
+    Ingredient deletedIngredient= AnsiConsole.Prompt(
+    new SelectionPrompt<Ingredient>()
       .Title("Please select an ingredient to remove.")
       .AddChoices(recipe.Ingredients)
-      .AddChoices("Exit")
+      .AddChoices(new Ingredient("Exit"))
         );
-    if (deletedIngredient != "Exit")
+    if (deletedIngredient.Name != "Exit")
     {
       recipe.Ingredients.Remove(deletedIngredient);
       Console.Clear();

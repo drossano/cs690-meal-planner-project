@@ -3,12 +3,20 @@ using Microsoft.VisualBasic;
 
 namespace MealPlanner;
 
+public class Ingredient(string name)
+{
+  public string Name { get; } = name;
 
+    public override string ToString()
+  {
+    return this.Name;
+  }
+}
 public class Recipe(string name)
 {
   public string Name { get; } = name;
 
-  public List<string> Ingredients { get; set; } = [];
+  public List<Ingredient> Ingredients { get; set; } = [];
   public override string ToString()
   {
     return this.Name;

@@ -21,14 +21,20 @@ public class DataManager
     var recipesFileContent = File.ReadAllLines("recipeList.txt");
     foreach (var recipeLine in recipesFileContent)
     {
-      var recipeAndIngredients = recipeLine.Split(":", StringSplitOptions.RemoveEmptyEntries);
+      string[] recipeAndIngredients = recipeLine.Split(":", StringSplitOptions.RemoveEmptyEntries);
       var recipeName = recipeAndIngredients[0];
       string recipeIngredients ="";
       if (recipeAndIngredients.Length > 1){
         recipeIngredients = recipeAndIngredients[1];
       }
       Recipes.Add(new Recipe(recipeName));
-      List<string> ingredients = [.. recipeIngredients.Split(",", StringSplitOptions.RemoveEmptyEntries)];
+      string[] ingredientStrings = recipeIngredients.Split("," ,StringSplitOptions.RemoveEmptyEntries);
+      List<Ingredient> ingredients = [];
+      foreach (string ingredient in ingredientStrings)
+      {
+       Ingredient newIngredient = new Ingredient(ingredient);
+       ingredients.Add(newIngredient);
+      }
       foreach (Recipe recipe in Recipes)
       {
         if (recipe.Name == recipeName)
