@@ -257,6 +257,16 @@ class ConsoleUI
       Console.WriteLine("- " + recipe.Name);
     }
   }
+
+    public void PrintRecipeIngredients(Recipe recipe)
+  {
+
+    Console.WriteLine(recipe.Name);
+    foreach (var ingredient in recipe.Ingredients)
+    {
+      Console.WriteLine("- " + ingredient);
+    }
+  }
   public void AddRecipe()
   {
     var recipeName = AnsiConsole.Prompt(
@@ -289,6 +299,7 @@ class ConsoleUI
         );
     if (recipeToEdit.Name != "Exit")
     {
+      PrintRecipeIngredients(recipeToEdit);
      List<string> choices = ["Add Ingredients", "Exit"];
       if (recipeToEdit.Ingredients.Count != 0)
       { choices.Insert(1, "Remove Ingredients" ); }
