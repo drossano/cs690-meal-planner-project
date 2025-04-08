@@ -299,6 +299,7 @@ class ConsoleUI
         );
     if (recipeToEdit.Name != "Exit")
     {
+      Console.Clear();
       PrintRecipeIngredients(recipeToEdit);
      List<string> choices = ["Add Ingredients", "Exit"];
       if (recipeToEdit.Ingredients.Count != 0)
@@ -337,6 +338,9 @@ class ConsoleUI
       {
         recipe.Ingredients.Add(ingredientName);
       }
+      Console.Clear();
+      Console.WriteLine(ingredientName + " added to " + recipe.Name + ".");
+      PrintRecipeIngredients(recipe);
       confirmation = AnsiConsole.Prompt(
         new SelectionPrompt<string>()
         .Title("Would you like to add another ingredient?")
@@ -344,6 +348,7 @@ class ConsoleUI
 
       );
     } while (confirmation != "No");
+    Console.Clear();
   }
 
     public void RemoveIngredient(Recipe recipe)
@@ -351,6 +356,7 @@ class ConsoleUI
     string confirmation;
     do
     {
+    Console.Clear();
     string deletedIngredient= AnsiConsole.Prompt(
     new SelectionPrompt<String>()
       .Title("Please select an ingredient to remove.")
@@ -361,9 +367,10 @@ class ConsoleUI
     {
       recipe.Ingredients.Remove(deletedIngredient);
       Console.Clear();
-
+      Console.WriteLine(deletedIngredient + " removed from " + recipe.Name + ".");
+      PrintRecipeIngredients(recipe);
     }
-          Console.WriteLine(deletedIngredient + " removed");
+
       if (recipe.Ingredients.Count != 0)
       {
               confirmation = AnsiConsole.Prompt(
@@ -379,7 +386,7 @@ class ConsoleUI
       }
 
     } while (confirmation != "No" && recipe.Ingredients.Count != 0);
-
+    Console.Clear();
   }
 
   public void RemoveRecipe()
