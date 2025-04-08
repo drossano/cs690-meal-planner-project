@@ -290,7 +290,7 @@ class ConsoleUI
     if (recipeToEdit.Name != "Exit")
     {
      List<string> choices = ["Add Ingredients", "Exit"];
-      if (dataManager.Recipes.Count != 0)
+      if (recipeToEdit.Ingredients.Count != 0)
       { choices.Insert(1, "Remove Ingredients" ); }
       string module = AnsiConsole.Prompt(
           new SelectionPrompt<string>()
@@ -337,6 +337,9 @@ class ConsoleUI
 
     public void RemoveIngredient(Recipe recipe)
   {
+    string confirmation;
+    do
+    {
     string deletedIngredient= AnsiConsole.Prompt(
     new SelectionPrompt<String>()
       .Title("Please select an ingredient to remove.")
@@ -347,8 +350,25 @@ class ConsoleUI
     {
       recipe.Ingredients.Remove(deletedIngredient);
       Console.Clear();
-      Console.WriteLine(deletedIngredient + " removed");
+
     }
+          Console.WriteLine(deletedIngredient + " removed");
+      if (recipe.Ingredients.Count != 0)
+      {
+              confirmation = AnsiConsole.Prompt(
+        new SelectionPrompt<string>()
+        .Title("Would you like to remove another ingredient?")
+                .AddChoices("Yes", "No")
+
+      );
+      }
+      else
+      {
+        confirmation = "No";
+      }
+
+    } while (confirmation != "No" && recipe.Ingredients.Count != 0);
+
   }
 
   public void RemoveRecipe()
