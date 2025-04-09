@@ -216,7 +216,7 @@ class ConsoleUI
 
   public void PrintShoppingList()
   {
-    List<string> shoppingList = [];
+    List<Ingredient> shoppingList = [];
     foreach (var Day in dataManager.Days)
     {
       foreach (var meal in Day.meals)
@@ -226,14 +226,16 @@ class ConsoleUI
           var recipe = dataManager.Recipes.Find(recipe => recipe.Name == dish.Name);
           foreach (var ingredient in recipe.Ingredients)
           {
-            shoppingList.Add(ingredient.Name);
+            shoppingList.Add(ingredient);
           }
         }
       }
     }
-    List<string> shoppingListNoDupes = shoppingList.Distinct().ToList();
+    List<Ingredient> shoppingListNoDupes = shoppingList.DistinctBy(dish => dish.Name).ToList();
+    List<Ingredient> ownedIngredients = dataManager.Ingredients;
+    List<Ingredient> neededIngredients = shoppingListNoDupes.ExceptBy(ownedIngredients.Select(sl => sl.Name), i=> i.Name).ToList();
     Console.WriteLine("Shopping List");
-    foreach (var item in shoppingListNoDupes)
+    foreach (var item in neededIngredients)
     {
       Console.WriteLine("- " + item);
     }
