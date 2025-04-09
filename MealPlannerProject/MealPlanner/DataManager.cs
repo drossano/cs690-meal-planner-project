@@ -135,6 +135,19 @@ public class DataManager
     Recipes.Remove(recipe);
     SyncRecipes();
   }
+  
+  public void AddRecipeIngredient(Recipe recipe, Ingredient ingredient)
+  {
+    recipe.Ingredients.Add(ingredient);
+    SyncRecipes();
+  }
+
+    public void RemoveRecipeIngredient(Recipe recipe, Ingredient ingredient)
+  {
+    recipe.Ingredients.Remove(ingredient);
+    SyncRecipes();
+  }
+  
 public void SyncIngredients()
   {
     string ingredientList = "ingredientList.txt";

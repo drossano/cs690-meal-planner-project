@@ -1,3 +1,4 @@
 Sunday:Breakfast:Scrambled Eggs
 Monday:Breakfast:Toast
 Tuesday:Breakfast:Scrambled Eggs
+Wednesday:Dinner:Chicken Soup

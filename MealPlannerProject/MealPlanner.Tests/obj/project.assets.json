@@ -5679,19 +5679,19 @@
     ]
   },
   "packageFolders": {
-    "/home/deanrossano/.nuget/packages/": {}
+    "/home/vscode/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner.Tests/MealPlanner.Tests.csproj",
+      "projectUniqueName": "/home/vscode/cs690-meal-planner-project/MealPlannerProject/MealPlanner.Tests/MealPlanner.Tests.csproj",
       "projectName": "MealPlanner.Tests",
-      "projectPath": "/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner.Tests/MealPlanner.Tests.csproj",
-      "packagesPath": "/home/deanrossano/.nuget/packages/",
-      "outputPath": "/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner.Tests/obj/",
+      "projectPath": "/home/vscode/cs690-meal-planner-project/MealPlannerProject/MealPlanner.Tests/MealPlanner.Tests.csproj",
+      "packagesPath": "/home/vscode/.nuget/packages/",
+      "outputPath": "/home/vscode/cs690-meal-planner-project/MealPlannerProject/MealPlanner.Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/deanrossano/.nuget/NuGet/NuGet.Config"
+        "/home/vscode/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -5703,8 +5703,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/MealPlanner.csproj": {
-              "projectPath": "/media/deanrossano/Data/School/2025/spring/cs690/mod13-14/cs690-meal-planner-project/MealPlannerProject/MealPlanner/MealPlanner.csproj"
+            "/home/vscode/cs690-meal-planner-project/MealPlannerProject/MealPlanner/MealPlanner.csproj": {
+              "projectPath": "/home/vscode/cs690-meal-planner-project/MealPlannerProject/MealPlanner/MealPlanner.csproj"
             }
           }
         }
@@ -5713,6 +5713,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -5762,7 +5767,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.114/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

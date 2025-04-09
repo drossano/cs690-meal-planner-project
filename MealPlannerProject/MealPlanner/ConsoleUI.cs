@@ -339,11 +339,9 @@ class ConsoleUI
       {
         case "Add Ingredients":
           AddRecipeIngredient(recipeToEdit);
-          dataManager.SyncRecipes();
           break;
         case "Remove Ingredients":
           RemoveRecipeIngredient(recipeToEdit);
-          dataManager.SyncRecipes();
           break;
         case "Remove Recipe":
           RemoveRecipe();
@@ -363,7 +361,7 @@ class ConsoleUI
       new TextPrompt<string>("Enter the name of the ingredient that you would like to add. Enter \"quit\" if you don't want to add an ingredient."));
       if (ingredientName != "quit")
       {
-        recipe.Ingredients.Add(new Ingredient(ingredientName));
+        dataManager.AddRecipeIngredient(recipe, new Ingredient(ingredientName));
       }
       Console.Clear();
       Console.WriteLine(ingredientName + " added to " + recipe.Name + ".");
@@ -392,7 +390,7 @@ class ConsoleUI
         );
     if (deletedIngredient.Name != "Exit")
     {
-      recipe.Ingredients.Remove(deletedIngredient);
+      dataManager.RemoveRecipeIngredient(recipe, deletedIngredient);
       Console.Clear();
       Console.WriteLine(deletedIngredient + " removed from " + recipe.Name + ".");
       PrintRecipeIngredients(recipe);
