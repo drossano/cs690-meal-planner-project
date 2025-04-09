@@ -216,26 +216,10 @@ class ConsoleUI
 
   public void PrintShoppingList()
   {
-    List<Ingredient> shoppingList = [];
-    foreach (var Day in dataManager.Days)
-    {
-      foreach (var meal in Day.meals)
-      {
-        foreach (var dish in meal.Value)
-        {
-          var recipe = dataManager.Recipes.Find(recipe => recipe.Name == dish.Name);
-          foreach (var ingredient in recipe.Ingredients)
-          {
-            shoppingList.Add(ingredient);
-          }
-        }
-      }
-    }
-    List<Ingredient> shoppingListNoDupes = shoppingList.DistinctBy(dish => dish.Name).ToList();
-    List<Ingredient> ownedIngredients = dataManager.Ingredients;
-    List<Ingredient> neededIngredients = shoppingListNoDupes.ExceptBy(ownedIngredients.Select(sl => sl.Name), i=> i.Name).ToList();
+    Console.Clear();
+    List<Ingredient> shoppingList = dataManager.GenerateShoppingList();
     Console.WriteLine("Shopping List");
-    foreach (var item in neededIngredients)
+    foreach (var item in shoppingList)
     {
       Console.WriteLine("- " + item);
     }

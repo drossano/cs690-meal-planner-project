@@ -12,9 +12,9 @@ public class DataManagerTests
     public DataManagerTests()
     {
 
-        File.WriteAllText("recipeList.txt", "One:IngredientOne" + Environment.NewLine + "Two:" + Environment.NewLine + "Three:" + Environment.NewLine + "Four:" + Environment.NewLine + "Five:");
+        File.WriteAllText("recipeList.txt", "One:IngredientOne,IngredientThree" + Environment.NewLine + "Two:" + Environment.NewLine + "Three:" + Environment.NewLine + "Four:" + Environment.NewLine + "Five:");
         File.WriteAllText("mealList.txt", "Sunday:Dinner:One" + Environment.NewLine + "Sunday:Dinner:Two" + Environment.NewLine);
-        File.WriteAllText("ingredientList.txt", "One" + Environment.NewLine + "Two" + Environment.NewLine + "Three" + Environment.NewLine + "Four" + Environment.NewLine + "Five");   
+        File.WriteAllText("ingredientList.txt", "IngredientOne" + Environment.NewLine + "IngredientTwo" + Environment.NewLine + "Three" + Environment.NewLine + "Four" + Environment.NewLine + "Five");   
         testDataManager = new();
 
     }
@@ -45,22 +45,22 @@ public class DataManagerTests
     public void Test_DataManager_AddRecipeIngredient()
     {
         // Given
-        Assert.Equal(1, testDataManager.Recipes[0].Ingredients.Count);
+        Assert.Equal(2, testDataManager.Recipes[0].Ingredients.Count);
         // When
         testDataManager.AddRecipeIngredient(testDataManager.Recipes[0], new Ingredient("IngredientTwo")); 
         // Then
-        Assert.Equal(2, testDataManager.Recipes[0].Ingredients.Count);
+        Assert.Equal(3, testDataManager.Recipes[0].Ingredients.Count);
     }
 
     [Fact]
     public void Test_DataManager_RemoveRecipeIngredient()
     {
         // Given
-        Assert.Equal(1, testDataManager.Recipes[0].Ingredients.Count);
+        Assert.Equal(2, testDataManager.Recipes[0].Ingredients.Count);
         // When
         testDataManager.RemoveRecipeIngredient(testDataManager.Recipes[0], testDataManager.Recipes[0].Ingredients[0]); 
         // Then
-        Assert.Equal(0, testDataManager.Recipes[0].Ingredients.Count);
+        Assert.Equal(1, testDataManager.Recipes[0].Ingredients.Count);
     }
     [Fact]
     public void Test_DataManager_AddDish()
@@ -125,6 +125,17 @@ public class DataManagerTests
         testDataManager.RemoveIngredient(testDataManager.Ingredients[0]);
         // Then
         Assert.Equal(4, testDataManager.Ingredients.Count);
+    }
+    
+    [Fact]
+    public void Test_DataManager_GenerateShoppingList()
+    {
+        // Given
+
+        // When
+        List<Ingredient> list = testDataManager.GenerateShoppingList();
+        // Then
+        Assert.Equal(1, list.Count);
     }
 
 }

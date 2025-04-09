@@ -183,4 +183,27 @@ public void SyncIngredients()
     }
     SyncMeals();
   }
+
+  public List<Ingredient> GenerateShoppingList()
+  {
+    List<Ingredient> shoppingList = [];
+    foreach (var Day in Days)
+    {
+      foreach (var meal in Day.meals)
+      {
+        foreach (var dish in meal.Value)
+        {
+          var recipe = Recipes.Find(recipe => recipe.Name == dish.Name);
+          foreach (var ingredient in recipe.Ingredients)
+          {
+            shoppingList.Add(ingredient);
+          }
+        }
+      }
+    }
+    List<Ingredient> shoppingListNoDupes = shoppingList.DistinctBy(dish => dish.Name).ToList();
+    List<Ingredient> ownedIngredients = Ingredients;
+    List<Ingredient> neededIngredients = shoppingListNoDupes.ExceptBy(ownedIngredients.Select(sl => sl.Name), i=> i.Name).ToList();
+    return neededIngredients;
+  }
 }
