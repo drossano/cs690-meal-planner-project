@@ -211,7 +211,32 @@ class ConsoleUI
 
   public void ShoppingList()
   {
-    Console.WriteLine("Not yet implemented!");
+    PrintShoppingList();
+  }
+
+  public void PrintShoppingList()
+  {
+    List<string> shoppingList = [];
+    foreach (var Day in dataManager.Days)
+    {
+      foreach (var meal in Day.meals)
+      {
+        foreach (var dish in meal.Value)
+        {
+          var recipe = dataManager.Recipes.Find(recipe => recipe.Name == dish.Name);
+          foreach (var ingredient in recipe.Ingredients)
+          {
+            shoppingList.Add(ingredient.Name);
+          }
+        }
+      }
+    }
+    List<string> shoppingListNoDupes = shoppingList.Distinct().ToList();
+    Console.WriteLine("Shopping List");
+    foreach (var item in shoppingListNoDupes)
+    {
+      Console.WriteLine("- " + item);
+    }
   }
   public void Recipes()
   {
