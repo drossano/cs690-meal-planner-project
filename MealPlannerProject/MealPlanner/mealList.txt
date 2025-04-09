@@ -1,2 +1,3 @@
-Sunday:Breakfast:arstatartarst
-Monday:Lunch:sartartar
+Sunday:Breakfast:Scrambled Eggs
+Monday:Breakfast:Toast
+Tuesday:Breakfast:Scrambled Eggs
