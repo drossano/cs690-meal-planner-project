@@ -6,13 +6,14 @@ namespace MealPlanner;
 
 public class DataManager
 {
-
+  public List<Ingredient> Ingredients { get; }
   public List<Recipe> Recipes { get; }
   public List<Day> Days { get; }
 
   public DataManager()
   {
     Recipes = [];
+    Ingredients = [];
     Days = [new Day("Sunday"), new Day("Monday"), new Day("Tuesday"), new Day("Wednesday"), new Day("Thursday"), new Day("Friday"), new Day("Saturday")];
     if (!File.Exists("recipeList.txt"))
     {
@@ -29,17 +30,17 @@ public class DataManager
       }
       Recipes.Add(new Recipe(recipeName));
       string[] ingredientStrings = recipeIngredients.Split("," ,StringSplitOptions.RemoveEmptyEntries);
-      List<Ingredient> ingredients = [];
+      List<Ingredient> recipeIngredientsList= [];
       foreach (string ingredient in ingredientStrings)
       {
        Ingredient newIngredient = new Ingredient(ingredient);
-       ingredients.Add(newIngredient);
+       recipeIngredientsList.Add(newIngredient);
       }
       foreach (Recipe recipe in Recipes)
       {
         if (recipe.Name == recipeName)
         {
-          recipe.Ingredients = ingredients;
+          recipe.Ingredients = recipeIngredientsList;
         }
       }
     }
@@ -66,7 +67,15 @@ public class DataManager
 
       }
     }
-
+    if (!File.Exists("ingredientList.txt"))
+    {
+      File.Create("ingredientList.txt").Close();
+    }
+    var ingredientsFileContent = File.ReadAllLines("ingredientList.txt");
+     foreach (var ingredientName in ingredientsFileContent)
+    {
+      Ingredients.Add(new Ingredient(ingredientName));
+    }
   }
 
   public void SyncMeals()
@@ -124,6 +133,27 @@ public class DataManager
   public void RemoveRecipe(Recipe recipe)
   {
     Recipes.Remove(recipe);
+    SyncRecipes();
+  }
+public void SyncIngredients()
+  {
+    string ingredientList = "ingredientList.txt";
+    File.Delete(ingredientList);
+    foreach (Ingredient ingredient in Ingredients) 
+    {
+      File.AppendAllText(ingredientList, ingredient.Name + Environment.NewLine);
+    }
+  }
+
+  public void AddIngredient(Ingredient ingredient)
+  {
+    Ingredients.Add(ingredient);
+    SyncIngredients();
+  }
+
+  public void RemoveIngredient(Ingredient ingredient)
+  {
+    Ingredients.Remove(ingredient);
     SyncRecipes();
   }
 
