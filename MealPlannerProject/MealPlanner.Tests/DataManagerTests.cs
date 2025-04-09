@@ -14,7 +14,7 @@ public class DataManagerTests
 
         File.WriteAllText("recipeList.txt", "One:IngredientOne" + Environment.NewLine + "Two:" + Environment.NewLine + "Three:" + Environment.NewLine + "Four:" + Environment.NewLine + "Five:");
         File.WriteAllText("mealList.txt", "Sunday:Dinner:One" + Environment.NewLine + "Sunday:Dinner:Two" + Environment.NewLine);
-
+        File.WriteAllText("ingredientList.txt", "One" + Environment.NewLine + "Two" + Environment.NewLine + "Three" + Environment.NewLine + "Four" + Environment.NewLine + "Five");   
         testDataManager = new();
 
     }
@@ -104,6 +104,27 @@ public class DataManagerTests
         Assert.Empty(testDay.meals[testMealName]);
     }
 
+    [Fact]
+    public void Test_DataManager_AddIngredient()
+    {
+        // Given
+        Assert.Equal(5, testDataManager.Ingredients.Count);
+        // When
+        testDataManager.AddIngredient(new Ingredient("Six"));
+        // Then
+        Assert.Equal(6, testDataManager.Ingredients.Count);
+    }
 
+    [Fact]
+    public void Test_DataManager_RemoveIngredient()
+    {
+        // Given
+        Assert.Equal(5, testDataManager.Ingredients.Count);
+        
+        // When
+        testDataManager.RemoveIngredient(testDataManager.Ingredients[0]);
+        // Then
+        Assert.Equal(4, testDataManager.Ingredients.Count);
+    }
 
 }
