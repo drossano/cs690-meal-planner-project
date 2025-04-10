@@ -34,7 +34,8 @@ public class ConsoleUI
           mealPlannerUI.MealPlanner();
           break;
         case "Shopping List":
-          ShoppingList();
+          ShoppingListUI shoppingListUI = new(dataManager);
+          shoppingListUI.ShoppingList();
           break;
         case "Recipes":
           Recipes();
@@ -46,27 +47,6 @@ public class ConsoleUI
     } while (module != "Exit");
   }
 
-
-
-
-
-
-
-  public void ShoppingList()
-  {
-    PrintShoppingList();
-  }
-
-  public void PrintShoppingList()
-  {
-    Console.Clear();
-    List<Ingredient> shoppingList = dataManager.GenerateShoppingList();
-    Console.WriteLine("Shopping List");
-    foreach (var item in shoppingList)
-    {
-      Console.WriteLine("- " + item);
-    }
-  }
   public void Recipes()
   {
     Console.Clear();
@@ -181,8 +161,6 @@ public class ConsoleUI
     string confirmation;
     do
     {
-
-
       var ingredientName = AnsiConsole.Prompt(
       new TextPrompt<string>("Enter the name of the ingredient that you would like to add. Enter \"quit\" if you don't want to add an ingredient."));
       if (ingredientName != "quit")
@@ -196,7 +174,6 @@ public class ConsoleUI
         new SelectionPrompt<string>()
         .Title("Would you like to add another ingredient?")
                 .AddChoices("Yes", "No")
-
       );
     } while (confirmation != "No");
     Console.Clear();
@@ -286,7 +263,7 @@ public class ConsoleUI
       Console.Clear();
     }
   }
-public void AddIngredient()
+  public void AddIngredient()
   {
     var ingredientName = AnsiConsole.Prompt(
     new TextPrompt<string>("What's the name of the ingredient that you would like to add? Type \"quit\" to return to the previous menu."));
