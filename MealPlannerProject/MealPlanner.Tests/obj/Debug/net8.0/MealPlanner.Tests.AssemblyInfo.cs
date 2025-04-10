@@ -14,10 +14,14 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5078121630ca690fd1c952a31ddd7580d0872066")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8332f560a10b39cc30a4be01c851a7049bc548f8")]
 >>>>>>> parent of 5078121 (Remove extraneous datamanager calls)
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f20e226e4d64b4ff7a2d14b1ca06cfcb2d448f8f")]
+>>>>>>> parent of dac190f (Display Shopping List as panel)
 [assembly: System.Reflection.AssemblyProductAttribute("MealPlanner.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MealPlanner.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

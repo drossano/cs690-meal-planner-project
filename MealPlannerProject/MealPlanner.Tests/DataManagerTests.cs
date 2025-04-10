@@ -60,7 +60,7 @@ public class DataManagerTests
         // When
         testDataManager.RemoveRecipeIngredient(testDataManager.Recipes[0], testDataManager.Recipes[0].Ingredients[0]); 
         // Then
-        Assert.Single(testDataManager.Recipes[0].Ingredients);
+        Assert.Equal(1, testDataManager.Recipes[0].Ingredients.Count);
     }
     [Fact]
     public void Test_DataManager_AddDish()
@@ -135,7 +135,7 @@ public class DataManagerTests
         // When
         List<Ingredient> list = testDataManager.GenerateShoppingList();
         // Then
-        Assert.Single(list);
+        Assert.Equal(1, list.Count);
     }
 
 }
