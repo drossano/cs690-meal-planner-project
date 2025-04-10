@@ -4,7 +4,6 @@ using Spectre.Console;
 
 public class MealPlannerUI(DataManager dataManager)
 {
-    DataManager datamManager = dataManager;
     public void MealPlanner()
   {
     Console.Clear();

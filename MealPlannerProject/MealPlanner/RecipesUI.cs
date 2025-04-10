@@ -4,7 +4,7 @@ using Spectre.Console;
 
 public class RecipesUI(DataManager dataManager)
 {
-  DataManager datamManager = dataManager;
+
 public void Recipes()
   {
     Console.Clear();
@@ -44,8 +44,8 @@ public void Recipes()
   {
     var recipesPanel = new Panel(String.Join(Environment.NewLine, dataManager.Recipes))
     .Header("Recipes")
-    .HeaderAlignment(Justify.Center);
-
+    .HeaderAlignment(Justify.Center)
+    .Padding(8,0,8,0);
     AnsiConsole.Write(recipesPanel);
     Console.WriteLine("Recipes");
     foreach (var recipe in dataManager.Recipes)
