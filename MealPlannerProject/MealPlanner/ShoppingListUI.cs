@@ -4,6 +4,7 @@ using Spectre.Console;
 
 public class ShoppingListUI(DataManager dataManager)
 {
+  DataManager datamManager = dataManager;
   public void ShoppingList()
   {
     PrintShoppingList();
