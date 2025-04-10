@@ -25,5 +25,7 @@ jobs:
       working-directory: ./MealPlannerProject
     - name: Build
       run: dotnet build --no-restore
+      working-directory: ./MealPlannerProject
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: ./MealPlannerProject
