@@ -1,6 +1,7 @@
 using System.Windows.Markup;
 using System.IO;
 using System.Configuration.Assemblies;
+using System.Diagnostics.Metrics;
 
 namespace MealPlanner;
 
@@ -130,10 +131,41 @@ public class DataManager
     SyncRecipes();
   }
 
-  public void RemoveRecipe(Recipe recipe)
+  public bool RemoveRecipe(Recipe recipe)
   {
-    Recipes.Remove(recipe);
-    SyncRecipes();
+    if (CheckIfRecipeInMealPlan(recipe))
+    {
+      return false;
+    }
+    else
+    {
+      Recipes.Remove(recipe);
+      SyncRecipes();
+      return true;
+    }
+
+  }
+
+  public bool CheckIfRecipeInMealPlan(Recipe recipe)
+  {
+    List<string> mealPlanDishes = [];
+    foreach (Day day in Days)
+    { 
+      foreach (var meal in day.meals)
+      {
+        foreach (Recipe dish in meal.Value)
+        {
+          mealPlanDishes.Add(dish.Name);
+        }
+
+      } 
+    }
+    foreach (var item in mealPlanDishes)
+    {
+      Console.WriteLine(item);
+    }
+    Console.WriteLine(mealPlanDishes.Contains(recipe.Name));
+    return mealPlanDishes.Contains(recipe.Name);
   }
   
   public void AddRecipeIngredient(Recipe recipe, Ingredient ingredient)

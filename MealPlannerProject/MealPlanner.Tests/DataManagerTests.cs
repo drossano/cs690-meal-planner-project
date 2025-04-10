@@ -62,8 +62,23 @@ public class DataManagerTests
         // Then
         Assert.Equal(1, testDataManager.Recipes[0].Ingredients.Count);
     }
+
     [Fact]
-    public void Test_DataManager_AddDish()
+    public void Test_DataManager_PredentRemoveRecipeIfOnMealPlan()
+    {
+        // Given
+        Day testDay = testDataManager.Days[0];
+        Recipe testRecipe = testDataManager.Recipes[0];
+        string testMealName = "Dinner";
+
+        Assert.Equal(5, testDataManager.Recipes.Count);
+        // When
+        testDataManager.RemoveRecipe(testRecipe);
+        // Then
+        Assert.Equal(5, testDataManager.Recipes.Count);
+    }
+    [Fact]
+     public void Test_DataManager_AddDish()
     {
         // Given
         Day testDay = testDataManager.Days[0];

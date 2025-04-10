@@ -47,21 +47,15 @@ public void Recipes()
     .HeaderAlignment(Justify.Center)
     .Padding(8,0,8,0);
     AnsiConsole.Write(recipesPanel);
-    Console.WriteLine("Recipes");
-    foreach (var recipe in dataManager.Recipes)
-    {
-      Console.WriteLine("- " + recipe.Name);
-    }
   }
 
     public void PrintRecipeIngredients(Recipe recipe)
   {
-
-    Console.WriteLine(recipe.Name);
-    foreach (var ingredient in recipe.Ingredients)
-    {
-      Console.WriteLine("- " + ingredient);
-    }
+    var recipeIngredientsPanel = new Panel(String.Join(Environment.NewLine, recipe.Ingredients))
+    .Header(recipe.Name)
+    .HeaderAlignment(Justify.Center)
+    .Padding(8,0,8,0);
+    AnsiConsole.Write(recipeIngredientsPanel);
   }
   public void AddRecipe()
   {
@@ -190,9 +184,13 @@ public void Recipes()
         );
     if (deletedRecipe.Name != "Exit")
     {
-      dataManager.RemoveRecipe(deletedRecipe);
+      bool result = dataManager.RemoveRecipe(deletedRecipe);
       Console.Clear();
-      Console.WriteLine(deletedRecipe + " removed");
+      if (result)
+      {Console.WriteLine(deletedRecipe + " removed");}
+      else{
+        Console.WriteLine("This recipe is a dish in the Meal Plan. Please remove it from the meal plan first before removing from the recipe list");
+      }
     }
   }
 }
