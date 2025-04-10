@@ -31,6 +31,8 @@ public class DataManager
       Recipes.Add(new Recipe(recipeName));
       string[] ingredientStrings = recipeIngredients.Split("," ,StringSplitOptions.RemoveEmptyEntries);
       List<Ingredient> recipeIngredientsList= [];
+
+
       foreach (string ingredient in ingredientStrings)
       {
        Ingredient newIngredient = new Ingredient(ingredient);
@@ -90,9 +92,7 @@ public class DataManager
         {
           File.AppendAllText(mealList, day.Name + ":" + meal.Key + ":" + dish + Environment.NewLine);
         }
-
       }
-
     }
   }
 
@@ -109,6 +109,7 @@ public class DataManager
     dishes.Remove(dish);
     SyncMeals();
   }
+
   public void SyncRecipes()
   {
     string recipeList = "recipeList.txt";
@@ -177,9 +178,7 @@ public void SyncIngredients()
       foreach (var meal in day.meals)
       {
         meal.Value.Clear();
-
       }
-
     }
     SyncMeals();
   }
@@ -194,10 +193,11 @@ public void SyncIngredients()
         foreach (var dish in meal.Value)
         {
           var recipe = Recipes.Find(recipe => recipe.Name == dish.Name);
+          if (recipe.Ingredients.Count() != 0){
           foreach (var ingredient in recipe.Ingredients)
           {
             shoppingList.Add(ingredient);
-          }
+          }}
         }
       }
     }

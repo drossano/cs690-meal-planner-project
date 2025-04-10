@@ -4,7 +4,6 @@ using Spectre.Console;
 
 public class RecipesUI(DataManager dataManager)
 {
-  DataManager datamManager = dataManager;
 public void Recipes()
   {
     Console.Clear();
