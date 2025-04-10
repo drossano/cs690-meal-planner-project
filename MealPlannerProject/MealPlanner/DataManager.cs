@@ -168,7 +168,7 @@ public void SyncIngredients()
   public void RemoveIngredient(Ingredient ingredient)
   {
     Ingredients.Remove(ingredient);
-    SyncRecipes();
+    SyncIngredients();
   }
 
   public void ClearMealPlan()
