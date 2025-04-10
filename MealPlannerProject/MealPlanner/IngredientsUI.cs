@@ -65,7 +65,12 @@ public class IngredientsUI(DataManager dataManager)
 
 public void PrintIngredients()
   {
+    var ingredientsPanel = new Panel(String.Join(Environment.NewLine, dataManager.Ingredients))
+    .Header("Ingredients")
+    .HeaderAlignment(Justify.Center)
+    .Padding(4,0,4,0);
 
+    AnsiConsole.Write(ingredientsPanel);
     Console.WriteLine("Ingredients");
     foreach (var ingredient in dataManager.Ingredients)
     {

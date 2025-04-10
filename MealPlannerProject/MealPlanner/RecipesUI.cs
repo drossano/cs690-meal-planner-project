@@ -41,6 +41,11 @@ public void Recipes()
 
   public void PrintRecipes()
   {
+    var recipesPanel = new Panel(String.Join(Environment.NewLine, dataManager.Recipes))
+    .Header("Recipes")
+    .HeaderAlignment(Justify.Center);
+
+    AnsiConsole.Write(recipesPanel);
     Console.WriteLine("Recipes");
     foreach (var recipe in dataManager.Recipes)
     {
