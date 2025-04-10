@@ -193,11 +193,10 @@ public void SyncIngredients()
         foreach (var dish in meal.Value)
         {
           var recipe = Recipes.Find(recipe => recipe.Name == dish.Name);
-          if (recipe.Ingredients.Count() != 0){
           foreach (var ingredient in recipe.Ingredients)
           {
             shoppingList.Add(ingredient);
-          }}
+          }
         }
       }
     }
