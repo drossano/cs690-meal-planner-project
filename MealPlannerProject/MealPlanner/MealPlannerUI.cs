@@ -120,7 +120,7 @@ public class MealPlannerUI(DataManager dataManager)
           RemoveDish(selectedDay, selectedMeal);
           break;
       }
-
+      module = ConfirmContinueEditingMeal(selectedDay, selectedMeal);
     } while (module != "Exit");
   }
 
@@ -150,7 +150,20 @@ public class MealPlannerUI(DataManager dataManager)
       GenerateTable();
     }
   }
-
+   
+  public static string ConfirmContinueEditingMeal(Day day, string meal){
+    string confirmation = AnsiConsole.Prompt(
+     new SelectionPrompt<string>()
+        .Title("Would you like to continue editing " + day + "'s " + meal + "?")
+        .AddChoices(["Yes", "No"])
+    );
+    if (confirmation == "No")
+    {
+      return "Exit";
+    }
+    else{ return "";
+    }
+  }
   public void RemoveDish(Day selectedDay, string selectedMeal)
   {
     Recipe deletedDish = AnsiConsole.Prompt(

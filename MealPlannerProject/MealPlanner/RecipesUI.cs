@@ -77,6 +77,10 @@ public void Recipes()
       Console.Clear();
       Console.WriteLine(newRecipe.Name + " added to recipe list");
     }
+    else
+    {
+      Console.Clear();
+    }
   }
 
   public void EditRecipe()
@@ -115,7 +119,7 @@ public void Recipes()
 
   public void AddRecipeIngredient(Recipe recipe)
   {
-    string confirmation;
+    string confirmation = "No";
     do
     {
       var ingredientName = AnsiConsole.Prompt(
@@ -123,8 +127,7 @@ public void Recipes()
       if (ingredientName != "quit")
       {
         dataManager.AddRecipeIngredient(recipe, new Ingredient(ingredientName));
-      }
-      Console.Clear();
+        Console.Clear();
       Console.WriteLine(ingredientName + " added to " + recipe.Name + ".");
       PrintRecipeIngredients(recipe);
       confirmation = AnsiConsole.Prompt(
@@ -132,6 +135,10 @@ public void Recipes()
         .Title("Would you like to add another ingredient?")
                 .AddChoices("Yes", "No")
       );
+      }else{
+        Console.Clear();
+      }
+      
     } while (confirmation != "No");
     Console.Clear();
   }
@@ -189,7 +196,7 @@ public void Recipes()
       if (result)
       {Console.WriteLine(deletedRecipe + " removed");}
       else{
-        Console.WriteLine("This recipe is a dish in the Meal Plan. Please remove it from the meal plan first before removing from the recipe list");
+        Console.WriteLine("This recipe is a dish in the Meal Plan. Please remove it from the meal plan first before removing from the recipe list.");
       }
     }
   }
