@@ -239,4 +239,20 @@ public void SyncIngredients()
     List<Ingredient> neededIngredients = shoppingListNoDupes.ExceptBy(ownedIngredients.Select(sl => sl.Name.ToLower()), i=> i.Name.ToLower()).ToList();
     return neededIngredients;
   }
+
+    public bool CheckMealPlannerEmpty()
+  {
+    List<string> mealPlannerMeals = [];
+    foreach (var Day in Days)
+    {
+      foreach (var meal in Day.meals)
+      {
+        foreach (var dish in meal.Value)
+        {
+          mealPlannerMeals.Add(dish.Name);
+        }
+      }
+    }
+    return mealPlannerMeals.Count == 0;
+  }
 }
