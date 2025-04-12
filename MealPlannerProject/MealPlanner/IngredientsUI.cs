@@ -45,6 +45,9 @@ public class IngredientsUI(DataManager dataManager)
       dataManager.AddIngredient(newIngredient);
       Console.Clear();
       Console.WriteLine(newIngredient.Name + " added to ingredient list");
+    }else
+    {
+      Console.Clear();
     }
   }
   public void RemoveIngredient()
