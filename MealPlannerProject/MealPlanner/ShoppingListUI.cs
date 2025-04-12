@@ -23,10 +23,5 @@ public class ShoppingListUI(DataManager dataManager)
     .Padding(8,0,8,0);
 
     AnsiConsole.Write(shoppingListPanel);
-    Console.WriteLine("Shopping List");
-    foreach (var item in shoppingList)
-    {
-      Console.WriteLine("- " + item);
-    }
   }
 }

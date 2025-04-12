@@ -74,10 +74,5 @@ public void PrintIngredients()
     .Padding(8,0,8,0);
 
     AnsiConsole.Write(ingredientsPanel);
-    Console.WriteLine("Ingredients");
-    foreach (var ingredient in dataManager.Ingredients)
-    {
-      Console.WriteLine("- " + ingredient.Name);
-    }
   }
 }
