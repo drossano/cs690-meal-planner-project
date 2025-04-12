@@ -14,3 +14,4 @@ Sunday:Breakfast:srtasrt
 Sunday:Breakfast:srtasrt
 Sunday:Breakfast:srtasrt
 Tuesday:Breakfast:arstartart
+Thursday:Dinner:Mac and Cheese

@@ -14,7 +14,7 @@ public class DataManagerTests
 
         File.WriteAllText("recipeList.txt", "One:IngredientOne,IngredientThree" + Environment.NewLine + "Two:" + Environment.NewLine + "Three:" + Environment.NewLine + "Four:" + Environment.NewLine + "Five:");
         File.WriteAllText("mealList.txt", "Sunday:Dinner:One" + Environment.NewLine + "Sunday:Dinner:Two" + Environment.NewLine);
-        File.WriteAllText("ingredientList.txt", "IngredientOne" + Environment.NewLine + "IngredientTwo" + Environment.NewLine + "Three" + Environment.NewLine + "Four" + Environment.NewLine + "Five");   
+        File.WriteAllText("ingredientList.txt", "Ingredientone" + Environment.NewLine + "IngredientTwo" + Environment.NewLine + "Three" + Environment.NewLine + "Four" + Environment.NewLine + "Five");   
         testDataManager = new();
 
     }
@@ -62,7 +62,20 @@ public class DataManagerTests
         // Then
         Assert.Equal(1, testDataManager.Recipes[0].Ingredients.Count);
     }
+    [Fact]
+    public void Test_DataManager_CheckIfRecipeInMealPlan()
+    {
+        // Given
+        Day testDay = testDataManager.Days[0];
+        Recipe testRecipe = testDataManager.Recipes[0];
+        string testMealName = "Dinner";
 
+        Assert.Equal(5, testDataManager.Recipes.Count);
+        // When
+        testDataManager.RemoveRecipe(testRecipe);
+        // Then
+        Assert.Equal(5, testDataManager.Recipes.Count);
+    }
     [Fact]
     public void Test_DataManager_PredentRemoveRecipeIfOnMealPlan()
     {

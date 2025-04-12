@@ -236,7 +236,7 @@ public void SyncIngredients()
     }
     List<Ingredient> shoppingListNoDupes = shoppingList.DistinctBy(dish => dish.Name).ToList();
     List<Ingredient> ownedIngredients = Ingredients;
-    List<Ingredient> neededIngredients = shoppingListNoDupes.ExceptBy(ownedIngredients.Select(sl => sl.Name), i=> i.Name).ToList();
+    List<Ingredient> neededIngredients = shoppingListNoDupes.ExceptBy(ownedIngredients.Select(sl => sl.Name.ToLower()), i=> i.Name.ToLower()).ToList();
     return neededIngredients;
   }
 }
