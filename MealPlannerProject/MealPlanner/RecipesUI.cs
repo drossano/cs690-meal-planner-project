@@ -110,9 +110,6 @@ public void Recipes()
         case "Remove Ingredients":
           RemoveRecipeIngredient(recipeToEdit);
           break;
-        case "Remove Recipe":
-          RemoveRecipe();
-          break;
       }
     }
   }
