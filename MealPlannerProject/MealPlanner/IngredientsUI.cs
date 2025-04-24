@@ -12,7 +12,7 @@ public class IngredientsUI(DataManager dataManager)
     do
     {
       List<string> choices = ["Add Ingredient", "Exit"];
-      if (dataManager.Recipes.Count != 0)
+      if (dataManager.Ingredients.Count != 0)
       { choices.Insert(1, "Remove Ingredient" ); }
       module = AnsiConsole.Prompt(
           new SelectionPrompt<string>()

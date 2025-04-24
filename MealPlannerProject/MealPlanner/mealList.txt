@@ -1,3 +1,0 @@
-Sunday:Breakfast:Cereal
-Monday:Lunch:Ham Sandwich
-Tuesday:Dinner:Mac and Cheese
