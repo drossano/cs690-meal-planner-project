@@ -195,6 +195,7 @@ public void Recipes()
       else{
         Console.WriteLine("This recipe is a dish in the Meal Plan. Please remove it from the meal plan first before removing from the recipe list.");
       }
-    }
+    } else
+    {Console.Clear();}
   }
 }

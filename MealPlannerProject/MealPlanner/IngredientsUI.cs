@@ -63,6 +63,8 @@ public class IngredientsUI(DataManager dataManager)
       dataManager.RemoveIngredient(deletedIngredient);
       Console.Clear();
       Console.WriteLine(deletedIngredient + " removed");
+    }else{
+      Console.Clear();
     }
   }
 
